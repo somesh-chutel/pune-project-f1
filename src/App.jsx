@@ -2,6 +2,7 @@ import { Route,Routes } from "react-router-dom";
 import Home from "./components/home";
 import Login from "./components/login";
 import Jobs from "./components/jobs";
+import NotFound from "./components/notFound";
 
 const App = ()=>(
 
@@ -15,6 +16,7 @@ const App = ()=>(
 
                   <Route path = "/jobs" element = { <Jobs/> }></Route>
 
+                  <Route path = "/*" element = { <NotFound/> }></Route>
 
 
           </Routes>
