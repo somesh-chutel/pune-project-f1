@@ -2,6 +2,7 @@ import { Route,Routes } from "react-router-dom";
 import Home from "./components/home";
 import Login from "./components/login";
 import Jobs from "./components/jobs";
+import ProtectedRoute from "./components/protectedRoute";
 import NotFound from "./components/notFound";
 
 const App = ()=>(
@@ -10,11 +11,11 @@ const App = ()=>(
 
           <Routes>
 
-                  <Route path = "/" element = { <Home/> }></Route>
+                  <Route path = "/" element = { <ProtectedRoute Component = {Home}/> }></Route>
 
                   <Route path = "/login" element = { <Login/> }></Route>
 
-                  <Route path = "/jobs" element = { <Jobs/> }></Route>
+                  <Route path = "/jobs" element = { <ProtectedRoute Component = {Jobs}/> }></Route>
 
                   <Route path = "/*" element = { <NotFound/> }></Route>
 
