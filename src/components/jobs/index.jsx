@@ -2,10 +2,13 @@ import Header from '../header';
 import DisplayJobs from '../displayJobs';
 import FilterSection from '../filterSection';
 import Cookies from 'js-cookie';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './index.css';
 
 const Jobs = ()=> {
+    const [allValues,setValues] = useState({
+        jobsList : []
+    });
 
     const token = Cookies.get("jwtToken");
 
@@ -29,6 +32,10 @@ const Jobs = ()=> {
 
               console.log(data.jobs);
 
+              if(response.ok===true){
+                setValues({...allValues,jobsList : data.jobs})
+              }
+
         }
 
 
@@ -48,7 +55,17 @@ const Jobs = ()=> {
                         <FilterSection/>
                     </div>
                     <div className='display-all-jobs-cont'>
-                        <DisplayJobs/>
+                        <input placeholder='Search' type="search" className='form-control my-input'/>
+                        <ul className='jobs-list-cont'>
+                                {
+                                   allValues.jobsList.map(each=>
+
+                                    <DisplayJobs jobsItem = {each} key={each.id}/>
+                                   ) 
+                                }
+
+                        </ul>
+                        
                     </div>
             </div>
 
